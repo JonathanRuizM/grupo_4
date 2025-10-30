@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-const MesaSchema = mongoose.Schema(
+const { Schema } = mongoose;
+
+const MesaSchema = new Schema(
     {
         numero: { type: Number, required: true, unique: true },
         capacidad: { type: Number, required: true, min: 1 },

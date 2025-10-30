@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-const EmpleadoSchema =  mongooseSchema(
+const { Schema } = mongoose;
+
+const EmpleadoSchema = new Schema(
     {
         nombre: { type: String, required: true, trim: true },
         edad: { type: Number, min: 0 },

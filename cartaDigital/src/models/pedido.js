@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 
-const PedidoSchema = mongoose.Schema(
+const { Schema } = mongoose;
+
+const PedidoSchema = new Schema(
     {
-        cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente', required: true },
-        mesa: { type: mongoose.Schema.Types.ObjectId, ref: 'Mesa', required: true },
+        cliente: { type: Schema.Types.ObjectId, ref: 'Cliente', required: true },
+        mesa: { type: Schema.Types.ObjectId, ref: 'Mesa', required: true },
         items: [{
-            producto: { type: mongoose.Schema.Types.ObjectId, ref: 'Producto', required: true },
+            producto: { type: Schema.Types.ObjectId, ref: 'Producto', required: true },
             cantidad: { type: Number, required: true, min: 1 },
             precio: { type: Number, required: true, min: 0 }
         }],
