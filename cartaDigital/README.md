@@ -56,12 +56,12 @@ Este proyecto redefinirá la manera en que los clientes interactúan con un bar/
 - **ACTUALIZAR (Modificación)**: `PUT /api/empleados/:id`
 - **ELIMINAR (Baja)**: `DELETE /api/empleados/:id`
 
-### Menús (ítems del menú/productos)
-- **LISTAR**: `GET /api/menus`
-- **OBTENER POR ID**: `GET /api/menus/:id`
-- **CREAR (Alta)**: `POST /api/menus`
-- **ACTUALIZAR (Modificación)**: `PUT /api/menus/:id`
-- **ELIMINAR (Baja)**: `DELETE /api/menus/:id`
+### Productos
+- **LISTAR**: `GET /api/productos`
+- **OBTENER POR ID**: `GET /api/productos/:id`
+- **CREAR (Alta)**: `POST /api/productos`
+- **ACTUALIZAR (Modificación)**: `PUT /api/productos/:id`
+- **ELIMINAR (Baja)**: `DELETE /api/productos/:id`
 
 ### Mesas
 - **LISTAR**: `GET /api/mesas`
