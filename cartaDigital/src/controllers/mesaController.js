@@ -1,4 +1,5 @@
 import Mesa from '../models/mesa.js';
+import { ESTADOS_MESA } from '../constants.js';
 
 export const createMesa = async (req, res) => {
   try {
@@ -12,9 +13,23 @@ export const createMesa = async (req, res) => {
 
 export const listMesas = async (req, res) => {
   try {
-    const mesas = await Mesa.find();
+    const estado = req.body?.estado;
+    console.log({estado});
+
+     if (estado && !Object.values(ESTADOS_MESA).includes(estado)) {
+      return res.status(400).json({ error: 'estado inválido' });
+    }
+      const filtro = estado ? { estado } : {};
+
+    const mesas = await Mesa.find(filtro);
+
+    if (mesas.length === 0) {
+      return res.status(404).json({ error: 'No hay mesas disponibles' });
+    }
+
     return res.json(mesas);
   } catch (err) {
+    console.error("Error al listar mesas:", err);
     return res.status(500).json({ error: err.message });
   }
 };
