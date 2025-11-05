@@ -1,4 +1,4 @@
-# Digital Menu for Bar/Restaurant
+# Digital Menu for Bar or Restaurant
 
 ## Project Overview
 The Digital Menu project aims to modernize the dining experience by replacing traditional paper menus with a fully interactive digital solution. Customers will be able to access the restaurant’s menu directly from their smartphones, browsing available items, customizing their orders, and submitting them seamlessly to the kitchen and bar.
