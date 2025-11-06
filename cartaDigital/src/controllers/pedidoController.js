@@ -13,7 +13,7 @@ export const createPedido = async (req, res) => {
 
 export const listPedidos = async (req, res) => {
   try {
-    const estado = req.body?.estado;
+    const estado = req.query?.estado;
 
      if (estado && !Object.values(ESTADOS_PEDIDO).includes(estado)) {
       return res.status(400).json({ error: 'estado de pedido inválido' });
