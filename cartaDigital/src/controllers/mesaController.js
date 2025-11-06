@@ -14,7 +14,6 @@ export const createMesa = async (req, res) => {
 export const listMesas = async (req, res) => {
   try {
     const estado = req.body?.estado;
-    console.log({estado});
 
      if (estado && !Object.values(ESTADOS_MESA).includes(estado)) {
       return res.status(400).json({ error: 'estado inválido' });

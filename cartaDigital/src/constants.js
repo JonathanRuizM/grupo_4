@@ -4,4 +4,10 @@ const ESTADOS_MESA = {
     "RESERVADA": "reservada"
 }
 
-export { ESTADOS_MESA }
+const ESTADOS_PEDIDO = {
+    "PENDIENTE": "pendiente",
+    "EN_PREPARACION": "en_preparacion",
+    "LISTO": "listo",
+    "ENTREGADO": "entregado"
+}
+export { ESTADOS_MESA, ESTADOS_PEDIDO }
