@@ -1,4 +1,5 @@
 import Pedido from '../models/pedido.js';
+import { ESTADOS_PEDIDO } from '../constants.js';
 
 export const createPedido = async (req, res) => {
   try {
@@ -12,7 +13,14 @@ export const createPedido = async (req, res) => {
 
 export const listPedidos = async (req, res) => {
   try {
-    const pedidos = await Pedido.find();
+    const estado = req.query?.estado;
+
+     if (estado && !Object.values(ESTADOS_PEDIDO).includes(estado)) {
+      return res.status(400).json({ error: 'estado de pedido inválido' });
+    }
+      const filtro = estado ? { estado } : {};
+
+    const pedidos = await Pedido.find(filtro);
     return res.json(pedidos);
   } catch (err) {
     return res.status(500).json({ error: err.message });
