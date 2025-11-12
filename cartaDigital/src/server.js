@@ -1,7 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import conectionDB from "./config/db.js"
+import authRoutes from "./routes/authRoutes.js";
 import clientesRoutes from "./routes/clientes.js";
 import empleadosRoutes from "./routes/empleados.js";
 import mesasRoutes from "./routes/mesas.js";
@@ -18,11 +20,13 @@ const PORT = process.env.PORT || 3000;
 conectionDB();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
     res.send('bienvenido a la carta digital');
 });
 
+app.use(authRoutes);
 app.use('/api/clientes', clientesRoutes);
 app.use('/api/empleados', empleadosRoutes);
 app.use('/api/mesas',mesasRoutes);

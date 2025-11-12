@@ -8,7 +8,8 @@ const EmpleadoSchema = new Schema(
         edad: { type: Number, min: 0 },
         fechaIngreso: { type: Date, required: true },
         celular: { type: String, required: true, trim: true },
-        email: { type: String, required: true, lowercase: true, trim: true, unique: true }
+        email: { type: String, required: true, lowercase: true, trim: true, unique: true },
+        password: { type: String, required: true }
     },
     { timestamps: true }
 );

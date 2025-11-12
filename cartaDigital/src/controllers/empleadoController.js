@@ -1,4 +1,5 @@
 import Empleado from '../models/empleado.js';
+import bcrypt from 'bcryptjs';
 
 export const getEmpleados = async (req, res) => {
     try {
@@ -40,21 +41,30 @@ export const getEmpleadoByEmail = async (req, res) => {
 };
 
 export const createEmpleado = async (req, res) => {
-    if (!req.body.nombre || !req.body.email || !req.body.celular || !req.body.fechaIngreso) {
+    if (!req.body.nombre || !req.body.email || !req.body.celular || !req.body.fechaIngreso || !req.body.password) {
         return res.status(400).json({
-            error: "Faltan datos requeridos (nombre, email, celular, fechaIngreso)"
+            error: "Faltan datos requeridos (nombre, email, celular, fechaIngreso, password)"
         });
     }
 
-    const nuevoEmpleado = {
-        nombre: req.body.nombre,
-        edad: req.body.edad,
-        fechaIngreso: req.body.fechaIngreso,
-        celular: req.body.celular,
-        email: req.body.email
-    };
-
     try {
+        const empleadoExistente = await Empleado.findOne({ email: req.body.email });
+        if (empleadoExistente) {
+            return res.status(409).json({ error: "El email ya está registrado" });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const passwordHasheada = await bcrypt.hash(req.body.password, salt);
+
+        const nuevoEmpleado = {
+            nombre: req.body.nombre,
+            edad: req.body.edad,
+            fechaIngreso: req.body.fechaIngreso,
+            celular: req.body.celular,
+            email: req.body.email,
+            password: passwordHasheada
+        };
+
         const newEmpleado = await Empleado.create(nuevoEmpleado);
         res.status(201).json(newEmpleado);
     } catch (error) {
